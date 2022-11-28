@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% block main %}
+<div class="d-flex col justify-content-between mt-3">
+    <h3>Tus series favoritas: </h3>
+    <a href="/serie/create" class="btn btn-primary text-center">Agregar</a>
+</div>
+
+<table class="table mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Temporadas</th>
+            <th scope="col">Capitulos por Temporada</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for serie in series %}
+        <tr>
+            <th scope="row">{{ serie.id }}</th>
+            <td>{{ serie.name }}</td>
+            <td>{{ serie.state }}</td>
+            <td>{{ serie.temporadas }}</td>
+            <td>{{ serie.capPorTem }}</td>
+            <td class="d-flex col justify-content-evenly">
+                <a href="/series/edit/{{serie.id}}" class="btn btn-warning">
+                    <i class="bi bi-pen-fill"></i>
+                    Editar
+                </a>
+                <a href="/series/delete/{{serie.id}}" class="btn btn-danger">
+                    <i class="bi bi-trash2-fill"></i>
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+{% endblock %}
